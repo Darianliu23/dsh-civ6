@@ -1,0 +1,46 @@
+{
+  "name": "dsh-civ6-whale",
+  "version": "0.1.0",
+  "description": "让 DeepSeek 在 DSH 会话里玩《文明6》：不需要 API Key。提供三个会话预设：AI 自己玩、AI 当助理（玩家自己玩）、一起玩（随时接手）。需要本机装好 civ6-mcp（base-game-compat 分支）并在游戏里打开 Tuner。",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "civilization-vi",
+    "mcp"
+  ],
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build:client": "node tools/build-client.mjs",
+    "test": "node --test tests/plugin.test.mjs"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dependencies": {
+    "@deepseek-ai/schemastery": "3.18.4"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": ">=3.18.1-rc.1 <4.0.0 || >=3.18.2 <4.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    }
+  }
+}
