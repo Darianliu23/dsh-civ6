@@ -1,4 +1,4 @@
-# dsh-civ6-whale
+# dsh-civ6
 
 让 AI 在 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）的会话里玩《文明6》。思考和行动的是 DSH 自己的模型，用的是 DSH 的额度，**不需要另配 API Key**。
 
@@ -55,7 +55,7 @@ DSH 规定会话聊过以后就不能再换预设。为了让已经聊过、没�
 
 ## 安装插件
 
-在 DSH 的插件市场搜 `dsh-civ6-whale` 安装，或者在插件页面用 `github:Darianliu23/dsh-civ6-whale` 安装。装好后重启一次 DSH，新建会话时就能看到三个文明6 预设。
+在 DSH 的插件市场搜 `dsh-civ6` 安装，或者在插件页面用 `github:Darianliu23/dsh-civ6` 安装。装好后重启一次 DSH，新建会话时就能看到三个文明6 预设。
 
 DSH 的桌面版和网页版用不同的 profile，要用哪个就在哪个里装。
 
@@ -64,7 +64,7 @@ DSH 的桌面版和网页版用不同的 profile，要用哪个就在哪个里�
 
 在 `<DSH_HOME>/profiles/desktop`（或 `web`）里：
 
-1. `package.json` 的 `dependencies` 加 `"dsh-civ6-whale": "link:<本仓库路径>"`，`dsh.profile.bundles` 加 `"dsh-civ6-whale"`；
+1. `package.json` 的 `dependencies` 加 `"dsh-civ6": "link:<本仓库路径>"`，`dsh.profile.bundles` 加 `"dsh-civ6"`；
 2. 用 DSH 自带的 pnpm 运行 `pnpm install --no-frozen-lockfile`；
 3. 重启 DSH。
 
@@ -83,7 +83,7 @@ AI 每回合结束时写的反思存在 civ6-mcp 的日记里（`~/.civ6-mcp`）
 
 ## 设置
 
-DSH 左侧边栏「插件」→ dsh-civ6-whale →「配置 ›」。所有设置都要**重启 DSH**才生效，预设相关的还要新建会话。
+DSH 左侧边栏「插件」→ dsh-civ6 →「配置 ›」。所有设置都要**重启 DSH**才生效，预设相关的还要新建会话。
 
 | 设置 | 默认 | 说明 |
 |---|---|---|
