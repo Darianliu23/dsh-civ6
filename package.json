@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build:client": "node tools/build-client.mjs",
-    "test": "node --test tests/plugin.test.mjs"
+    "test": "node --test tests/"
   },
   "files": [
     "lib",

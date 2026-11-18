@@ -18,6 +18,8 @@ const LABELS = {
   autoEnabled: ['preset', '创建“AI 自己玩”预设'],
   advisorEnabled: ['preset', '创建“AI 当助理”预设'],
   coopEnabled: ['preset', '创建“一起玩”预设'],
+  gatewayEnabled: ['gateway', '在所有会话里提供 civ6 入口工具'],
+  gatewayMode: ['gateway', '入口工具的玩法'],
   extraInstructions: ['play', '额外要求'],
   baseGame: ['play', '原版规则（没有资料片）'],
   civMcpDir: ['connect', 'civ6-mcp 文件夹'],
@@ -31,6 +33,7 @@ const LABELS = {
 
 const GROUPS = [
   ['preset', '三个预设'],
+  ['gateway', '老会话也能玩：入口工具'],
   ['play', '游玩'],
   ['connect', '连接'],
   ['name', '名字'],
@@ -147,7 +150,7 @@ window.__ModuleLoader__.load({
 \t\t\t\tsetCleared({});
 \t\t\t}, [revision]);
 
-\t\t\tif (props.view === "summary") return "三个文明6 会话预设、额外要求和连接设置";
+\t\t\tif (props.view === "summary") return "三个文明6 会话预设、入口工具、额外要求和连接设置";
 \t\t\tif (!form) return h("p", { style: hint }, "DSH 还没把这个插件的设置交给页面：确认插件在运行，或者重启一次 DSH。");
 \t\t\tif (state.status === "loading") return h("p", { style: hint }, "正在读取设置…");
 \t\t\tif (state.status !== "ready" || !state.value) return h("p", { style: hint }, "这个插件的设置现在读不到（DSH 没有对这个页面开放它）。");
