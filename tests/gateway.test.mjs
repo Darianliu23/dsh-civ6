@@ -6,10 +6,17 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { createGateway, currentConfig, describeTool, helpText } from '../lib/index.js'
+import { createGateway, describeTool, helpText, resolveCivMcpDir } from '../lib/index.js'
 
-const civMcpDir = process.env.CIV6_MCP_DIR ?? currentConfig({}).civMcpDir
-const haveCivMcp = existsSync(join(civMcpDir, 'pyproject.toml'))
+const civMcpDir = resolveCivMcpDir('')
+const haveCivMcp = Boolean(civMcpDir) && existsSync(join(civMcpDir, 'pyproject.toml'))
+
+test('没找到 civ6-mcp 时入口工具直接说明，不去拉进程', async () => {
+  const { tool, client } = createGateway({ civMcpDir: 'Z:\\definitely\\not\\here' })
+  const out = await tool.execute({ action: 'help' }, {})
+  assert.match(out, /失败/)
+  assert.equal(client.running, false)
+})
 
 test('helpText / describeTool 不依赖进程', () => {
   const tools = [
