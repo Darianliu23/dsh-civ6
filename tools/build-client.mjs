@@ -15,28 +15,26 @@ import { Config, name as packageName } from '../lib/index.js'
 
 /** 卡片上的短标题和分组。 */
 const LABELS = {
+  gatewayMode: ['play', '玩法'],
+  extraInstructions: ['play', '额外要求'],
+  baseGame: ['play', '原版规则（没有资料片）'],
+  toolTimeoutMinutes: ['connect', '单个动作最长等多少分钟'],
+  civMcpDir: ['connect', 'civ6-mcp 文件夹'],
+  uvPath: ['connect', 'uv 路径'],
+  gatewayEnabled: ['connect', '在所有会话里提供 civ6 工具'],
   autoEnabled: ['preset', '创建“AI 自己玩”预设'],
   advisorEnabled: ['preset', '创建“AI 当助理”预设'],
   coopEnabled: ['preset', '创建“一起玩”预设'],
-  gatewayEnabled: ['gateway', '在所有会话里提供 civ6 入口工具'],
-  gatewayMode: ['gateway', '入口工具的玩法'],
-  extraInstructions: ['play', '额外要求'],
-  baseGame: ['play', '原版规则（没有资料片）'],
-  civMcpDir: ['connect', 'civ6-mcp 文件夹'],
-  uvPath: ['connect', 'uv 路径'],
-  toolTimeoutMinutes: ['connect', '单个动作最长等多少分钟'],
-  autoName: ['name', '“AI 自己玩”的名字'],
-  advisorName: ['name', '“AI 当助理”的名字'],
-  coopName: ['name', '“一起玩”的名字'],
-  basePreset: ['name', '基础预设'],
+  autoName: ['preset', '“AI 自己玩”预设的名字'],
+  advisorName: ['preset', '“AI 当助理”预设的名字'],
+  coopName: ['preset', '“一起玩”预设的名字'],
+  basePreset: ['preset', '基础预设'],
 }
 
 const GROUPS = [
-  ['preset', '三个预设'],
-  ['gateway', '老会话也能玩：入口工具'],
-  ['play', '游玩'],
+  ['play', '游玩（改了马上生效）'],
   ['connect', '连接'],
-  ['name', '名字'],
+  ['preset', '会话预设（可选，默认不建）'],
 ]
 
 export function buildFields() {

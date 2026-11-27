@@ -1,6 +1,6 @@
 {
   "name": "dsh-civ6",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "让 AI 在 DSH 会话里玩《文明6》，用的是 DSH 自己的模型，不需要另配 API Key。三个会话预设：AI 自己玩、AI 当助理（玩家自己玩）、一起玩（随时接手）；另有一个所有会话都能用的 civ6 入口工具。需要本机装好 Darianliu23/civ6-mcp（base-game-compat 分支）并在游戏里打开 Tuner。",
   "license": "MIT",
   "author": "Darian (https://github.com/Darianliu23)",

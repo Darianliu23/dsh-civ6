@@ -70,3 +70,32 @@ test('真实拉起 civ6-mcp：help、describe、调用、未知动作', { skip: 
     client.dispose()
   }
 })
+
+test('设置页改了玩法，下一次动作就换 civ6-mcp，并先让 AI 重读规则', { skip: !haveCivMcp && `没找到 civ6-mcp：${civMcpDir}`, timeout: 180_000 }, async () => {
+  // 模拟 DSH 的活引用设置（volatile）：每次 get() 取当前值
+  let mode = 'coop'
+  const gateway = createGateway({ civMcpDir, toolTimeoutMinutes: 2, gatewayMode: { get: () => mode } })
+  const { tool } = gateway
+  try {
+    assert.match(await tool.execute({ action: 'help' }, {}), /模式：一起玩/)
+    const coopClient = gateway.client
+
+    mode = 'advisor'
+    const blocked = await tool.execute({ action: 'get_units' }, {})
+    assert.match(blocked, /从“一起玩”改成了“AI 当助理”/)
+    assert.match(blocked, /没有执行/)
+    assert.notEqual(gateway.client, coopClient, '应换了新进程')
+    assert.equal(coopClient.running, false, '旧进程应已结束')
+
+    const help = await tool.execute({ action: 'help' }, {})
+    assert.match(help, /模式：AI 当助理/)
+    assert.doesNotMatch(help, /- set_control\(/, '助理模式不开放接管开关')
+    const write = await tool.execute({ action: 'end_turn' }, {})
+    assert.match(write, /没有叫“end_turn”的动作/)
+    // 重读规则后正常执行
+    const units = await tool.execute({ action: 'get_units' }, {})
+    assert.doesNotMatch(units, /没有执行/)
+  } finally {
+    gateway.dispose()
+  }
+})
